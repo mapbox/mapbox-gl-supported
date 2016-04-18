@@ -87,17 +87,19 @@ function isWebGLSupportedCached(failIfMajorPerformanceCaveat) {
     return isWebGLSupportedCache[failIfMajorPerformanceCaveat];
 }
 
+isSupported.webGLContextAttributes = {
+    antialias: false,
+    alpha: true,
+    stencil: true,
+    depth: true
+};
+
 function isWebGLSupported(failIfMajorPerformanceCaveat) {
 
     var canvas = document.createElement('canvas');
 
-    var attributes = {
-        antialias: false,
-        alpha: true,
-        stencil: true,
-        depth: true,
-        failIfMajorPerformanceCaveat: failIfMajorPerformanceCaveat
-    };
+    var attributes = Object.create(isSupported.webGLContextAttributes);
+    attributes.failIfMajorPerformanceCaveat = failIfMajorPerformanceCaveat;
 
     if (canvas.probablySupportsContext) {
         return (
