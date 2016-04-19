@@ -4,7 +4,9 @@
   "description": "A library to determine if a browser supports Mapbox GL JS",
   "main": "index.js",
   "scripts": {
-    "test": "eslint index.js"
+    "test": "eslint index.js",
+    "prepublish": "npm test && npm run publish-s3",
+    "publish-s3": "aws s3 cp --acl public-read index.js s3://mapbox-gl-js/plugins/mapbox-gl-supported/v$(node -p -e \"require('./package.json').version\")/mapbox-gl-supported.js"
   },
   "repository": {
     "type": "git",
