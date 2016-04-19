@@ -9,7 +9,7 @@ You may test your browser [here](http://mapbox.github.io/mapbox-gl-supported).
 ## Using Mapbox GL JS Supported with a `<script>` tag
 
 ```html
-<script src='mapbox-gl-supported.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-supported/v1.1.0/mapbox-gl-supported.js'></script>
 <script>
 if (mapboxgl.supported()) {
     ...
