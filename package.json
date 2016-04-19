@@ -1,5 +1,5 @@
 {
-  "name": "mapbox-gl-js-supported",
+  "name": "mapbox-gl-supported",
   "version": "1.1.0",
   "description": "A library to determine if a browser supports Mapbox GL JS",
   "main": "index.js",
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mapbox/mapbox-gl-js-supported.git"
+    "url": "git+https://github.com/mapbox/mapbox-gl-supported.git"
   },
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/mapbox/mapbox-gl-js-supported/issues"
+    "url": "https://github.com/mapbox/mapbox-gl-supported/issues"
   },
-  "homepage": "https://github.com/mapbox/mapbox-gl-js-supported#readme",
+  "homepage": "https://github.com/mapbox/mapbox-gl-supported#readme",
   "devDependencies": {
     "eslint": "^2.8.0",
     "eslint-config-mourner": "^2.0.1"
