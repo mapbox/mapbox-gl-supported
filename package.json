@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "eslint index.js",
-    "build": "NODE_ENV=production && browserify index.js | uglifyjs -c -m > dist/mapbox-gl-supported.js"
+    "build": "mkdir -p dist && NODE_ENV=production && browserify index.js | uglifyjs -c -m > dist/mapbox-gl-supported.js"
   },
   "repository": {
     "type": "git",
