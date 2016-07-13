@@ -23,6 +23,7 @@ function isSupported(options) {
         isObjectSupported() &&
         isJSONSupported() &&
         isWorkerSupported() &&
+        isUint8ClampedArraySupported() &&
         isWebGLSupportedCached(options && options.failIfMajorPerformanceCaveat)
     );
 }
@@ -75,6 +76,10 @@ function isJSONSupported() {
 
 function isWorkerSupported() {
     return 'Worker' in window;
+}
+
+function isUint8ClampedArraySupported() {
+    return 'Uint8ClampedArray' in window;
 }
 
 var isWebGLSupportedCache = {};
