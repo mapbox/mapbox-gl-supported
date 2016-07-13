@@ -78,6 +78,8 @@ function isWorkerSupported() {
     return 'Worker' in window;
 }
 
+// IE11 only supports `Uint8ClampedArray` as of version
+// [KB2929437](https://support.microsoft.com/en-us/kb/2929437)
 function isUint8ClampedArraySupported() {
     return 'Uint8ClampedArray' in window;
 }
