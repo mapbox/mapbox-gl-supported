@@ -1,6 +1,6 @@
 {
   "name": "mapbox-gl-supported",
-  "version": "1.2.0",
+  "version": "1.2.0-dev",
   "description": "A library to determine if a browser supports Mapbox GL JS",
   "main": "index.js",
   "scripts": {
