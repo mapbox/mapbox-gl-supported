@@ -22,9 +22,9 @@ if (mapboxgl.supported()) {
 ## Using Mapbox GL JS Supported with [Browserify](http://browserify.org/)
 
 ```bash
-npm install --save mapbox-gl-supported
+npm install --save @mapbox/mapbox-gl-supported
 ```
 
 ```js
-var isSupported = require('mapbox-gl-supported')();
+var isSupported = require('@mapbox/mapbox-gl-supported')();
 ```
