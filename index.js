@@ -75,7 +75,28 @@ function isJSONSupported() {
 }
 
 function isWorkerSupported() {
-    return 'Worker' in window;
+    if (!('Worker' in window && 'Blob' in window)) {
+        return false;
+    }
+
+    var blob = new Blob([''], { type: 'text/javascript' });
+    var workerURL = URL.createObjectURL(blob);
+    var supported;
+    var worker;
+
+    try {
+        worker = new Worker(workerURL);
+        supported = true;
+    } catch (e) {
+        supported = false;
+    }
+
+    if (worker) {
+        worker.terminate();
+    }
+    URL.revokeObjectURL(workerURL);
+
+    return supported;
 }
 
 // IE11 only supports `Uint8ClampedArray` as of version
