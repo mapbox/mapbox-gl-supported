@@ -75,7 +75,7 @@ function isJSONSupported() {
 }
 
 function isWorkerSupported() {
-    if (!('Worker' in window && 'Blob' in window)) {
+    if (!('Worker' in window && 'Blob' in window && 'URL' in window)) {
         return false;
     }
 
