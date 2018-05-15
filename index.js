@@ -24,7 +24,8 @@ function isSupported(options) {
         isJSONSupported() &&
         isWorkerSupported() &&
         isUint8ClampedArraySupported() &&
-        isWebGLSupportedCached(options && options.failIfMajorPerformanceCaveat)
+        isWebGLSupportedCached(options && options.failIfMajorPerformanceCaveat) &&
+        isLetSupported()
     );
 }
 
@@ -147,4 +148,19 @@ function isWebGLSupported(failIfMajorPerformanceCaveat) {
             canvas.getContext('experimental-webgl', attributes)
         );
     }
+}
+
+// let is by no means required, but will help us rule out some old browsers:
+// http://caniuse.com/#feat=let
+function isLetSupported() {
+    var supported;
+
+    try {
+        eval('let foo = 123;');
+        supported = true;
+    } catch (e) {
+        supported = false;
+    }
+
+    return supported;
 }
