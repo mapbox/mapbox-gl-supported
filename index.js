@@ -24,6 +24,7 @@ function isSupported(options) {
         isJSONSupported() &&
         isWorkerSupported() &&
         isUint8ClampedArraySupported() &&
+        isArrayBufferSupported() &&
         isWebGLSupportedCached(options && options.failIfMajorPerformanceCaveat)
     );
 }
@@ -103,6 +104,11 @@ function isWorkerSupported() {
 // [KB2929437](https://support.microsoft.com/en-us/kb/2929437)
 function isUint8ClampedArraySupported() {
     return 'Uint8ClampedArray' in window;
+}
+
+// https://github.com/mapbox/mapbox-gl-supported/issues/19
+function isArrayBufferSupported() {
+    return ArrayBuffer.isView;
 }
 
 var isWebGLSupportedCache = {};
