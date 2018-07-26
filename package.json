@@ -4,7 +4,7 @@
   "description": "A library to determine if a browser supports Mapbox GL JS",
   "main": "index.js",
   "scripts": {
-    "test": "eslint index.js",
+    "test": "eslint index.js && tap test",
     "build": "mkdir -p dist && uglifyjs index.js -c -m -o dist/mapbox-gl-supported.js"
   },
   "repository": {
@@ -20,6 +20,8 @@
     "browserify": "^11.2.0",
     "eslint": "^2.8.0",
     "eslint-config-mourner": "^2.0.1",
+    "flow-bin": "0.77.0",
+    "tap": "^12.0.1",
     "uglify-js": "^2.4.24"
   }
 }

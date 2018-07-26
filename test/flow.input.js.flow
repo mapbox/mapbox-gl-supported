@@ -1,0 +1,13 @@
+// @flow strict
+/* eslint-disable */
+
+const isSupported = require('..');
+
+// Success:
+const r1: boolean = isSupported();
+const r2: boolean = isSupported({failIfMajorPerformanceCaveat: true});
+
+// Type errors:
+const r3: string = isSupported();
+const r4: boolean = isSupported({});
+

@@ -1,0 +1,3 @@
+// @flow
+declare type isSupported = (options?: {failIfMajorPerformanceCaveat: boolean}) => boolean;
+declare module.exports: isSupported;
