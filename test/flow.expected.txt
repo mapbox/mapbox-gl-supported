@@ -1,0 +1,34 @@
+Error ------------------------------------------------------------------------------------ test/flow.input.js.flow:11:20
+
+Cannot assign `isSupported()` to `r3` because boolean [1] is incompatible with string [2].
+
+   test/flow.input.js.flow:11:20
+   11| const r3: string = isSupported();
+                          ^^^^^^^^^^^^^
+
+References:
+   index.js.flow:2:83
+    2| declare type isSupported = (options?: {failIfMajorPerformanceCaveat: boolean}) => boolean;
+                                                                                         ^^^^^^^ [1]
+   test/flow.input.js.flow:11:11
+   11| const r3: string = isSupported();
+                 ^^^^^^ [2]
+
+
+Error ------------------------------------------------------------------------------------ test/flow.input.js.flow:12:33
+
+Cannot call `isSupported` with object literal bound to `options` because property `failIfMajorPerformanceCaveat` is
+missing in object literal [1] but exists in object type [2].
+
+   test/flow.input.js.flow:12:33
+   12| const r4: boolean = isSupported({});
+                                       ^^ [1]
+
+References:
+   index.js.flow:2:39
+    2| declare type isSupported = (options?: {failIfMajorPerformanceCaveat: boolean}) => boolean;
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ [2]
+
+
+
+Found 2 errors
