@@ -5,6 +5,7 @@ if (typeof module !== 'undefined' && module.exports) {
 } else if (window) {
     window.mapboxgl = window.mapboxgl || {};
     window.mapboxgl.supported = isSupported;
+    window.mapboxgl.notSupportedReason = notSupportedReason;
 }
 
 /**
@@ -16,18 +17,20 @@ if (typeof module !== 'undefined' && module.exports) {
  * @return {boolean}
  */
 function isSupported(options) {
-    return !!(
-        isBrowser() &&
-        isArraySupported() &&
-        isFunctionSupported() &&
-        isObjectSupported() &&
-        isJSONSupported() &&
-        isWorkerSupported() &&
-        isUint8ClampedArraySupported() &&
-        isArrayBufferSupported() &&
-        isCanvasGetImageDataSupported() &&
-        isWebGLSupportedCached(options && options.failIfMajorPerformanceCaveat)
-    );
+    return !notSupportedReason(options);
+}
+
+function notSupportedReason(options) {
+    if (!isBrowser()) return 'not a browser';
+    if (!isArraySupported()) return 'insufficent Array support';
+    if (!isFunctionSupported()) return 'insufficient Function support';
+    if (!isObjectSupported()) return 'insufficient Object support';
+    if (!isJSONSupported()) return 'insufficient JSON support';
+    if (!isWorkerSupported()) return 'insufficient worker support';
+    if (!isUint8ClampedArraySupported()) return 'insufficient Uint8ClampedArray support';
+    if (!isArrayBufferSupported()) return 'insufficient ArrayBuffer support';
+    if (!isCanvasGetImageDataSupported()) return 'insufficient Canvas/getImageData support';
+    if (!isWebGLSupportedCached(options && options.failIfMajorPerformanceCaveat)) return 'insufficient WebGL support';
 }
 
 function isBrowser() {
