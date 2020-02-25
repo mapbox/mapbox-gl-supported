@@ -25,6 +25,7 @@ function isSupported(options) {
         isWorkerSupported() &&
         isUint8ClampedArraySupported() &&
         isArrayBufferSupported() &&
+        isCanvasGetImageDataSupported() &&
         isWebGLSupportedCached(options && options.failIfMajorPerformanceCaveat)
     );
 }
@@ -111,6 +112,19 @@ function isArrayBufferSupported() {
     return ArrayBuffer.isView;
 }
 
+// Some browsers or browser extensions block access to canvas data to prevent fingerprinting.
+// Mapbox GL uses this API to load sprites and images in general.
+function isCanvasGetImageDataSupported() {
+    const canvas = document.createElement('canvas');
+    canvas.width = canvas.height = 1;
+    const context = canvas.getContext('2d');
+    if (!context) {
+        return false;
+    }
+    const imageData = context.getImageData(0, 0, 1, 1);
+    return imageData && imageData.width === canvas.width;
+}
+
 var isWebGLSupportedCache = {};
 function isWebGLSupportedCached(failIfMajorPerformanceCaveat) {
 
@@ -128,8 +142,7 @@ isSupported.webGLContextAttributes = {
     depth: true
 };
 
-function isWebGLSupported(failIfMajorPerformanceCaveat) {
-
+function getWebGLContext(failIfMajorPerformanceCaveat) {
     var canvas = document.createElement('canvas');
 
     var attributes = Object.create(isSupported.webGLContextAttributes);
@@ -153,4 +166,21 @@ function isWebGLSupported(failIfMajorPerformanceCaveat) {
             canvas.getContext('experimental-webgl', attributes)
         );
     }
+}
+
+function isWebGLSupported(failIfMajorPerformanceCaveat) {
+    const gl = getWebGLContext(failIfMajorPerformanceCaveat);
+    if (!gl) {
+        return false;
+    }
+
+    // Try compiling a shader and get its compile status. Some browsers like Brave block this API
+    // to prevent fingerprinting. Unfortunately, this also means that Mapbox GL won't work.
+    const shader = gl.createShader(gl.VERTEX_SHADER);
+    if (!shader || gl.isContextLost()) {
+        return false;
+    }
+    gl.shaderSource(shader, 'void main() {}');
+    gl.compileShader(shader);
+    return gl.getShaderParameter(shader, gl.COMPILE_STATUS) === true;
 }
