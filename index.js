@@ -151,24 +151,10 @@ function getWebGLContext(failIfMajorPerformanceCaveat) {
     var attributes = Object.create(isSupported.webGLContextAttributes);
     attributes.failIfMajorPerformanceCaveat = failIfMajorPerformanceCaveat;
 
-    if (canvas.probablySupportsContext) {
-        return (
-            canvas.probablySupportsContext('webgl', attributes) ||
-            canvas.probablySupportsContext('experimental-webgl', attributes)
-        );
-
-    } else if (canvas.supportsContext) {
-        return (
-            canvas.supportsContext('webgl', attributes) ||
-            canvas.supportsContext('experimental-webgl', attributes)
-        );
-
-    } else {
-        return (
-            canvas.getContext('webgl', attributes) ||
-            canvas.getContext('experimental-webgl', attributes)
-        );
-    }
+    return (
+        canvas.getContext('webgl', attributes) ||
+        canvas.getContext('experimental-webgl', attributes)
+    );
 }
 
 function isWebGLSupported(failIfMajorPerformanceCaveat) {
