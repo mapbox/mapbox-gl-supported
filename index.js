@@ -168,7 +168,7 @@ function isWebGLSupported(failIfMajorPerformanceCaveat) {
     let shader;
     try {
         shader = gl.createShader(gl.VERTEX_SHADER);
-    } catch () {
+    } catch (e) {
         // some older browsers throw an exception that `createShader` is not defined
         // so handle this separately from the case where browsers block `createShader`
         // for security reasons
