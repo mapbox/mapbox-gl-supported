@@ -165,7 +165,16 @@ function isWebGLSupported(failIfMajorPerformanceCaveat) {
 
     // Try compiling a shader and get its compile status. Some browsers like Brave block this API
     // to prevent fingerprinting. Unfortunately, this also means that Mapbox GL won't work.
-    const shader = gl.createShader(gl.VERTEX_SHADER);
+    let shader;
+    try {
+        shader = gl.createShader(gl.VERTEX_SHADER);
+    } catch () {
+        // some older browsers throw an exception that `createShader` is not defined
+        // so handle this separately from the case where browsers block `createShader`
+        // for security reasons
+        return false;
+    }
+
     if (!shader || gl.isContextLost()) {
         return false;
     }
