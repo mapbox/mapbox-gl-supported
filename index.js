@@ -2,6 +2,7 @@
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = isSupported;
+    module.exports.notSupportedReason = notSupportedReason;
 } else if (window) {
     window.mapboxgl = window.mapboxgl || {};
     window.mapboxgl.supported = isSupported;
