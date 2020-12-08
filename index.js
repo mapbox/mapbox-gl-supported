@@ -118,13 +118,13 @@ function isArrayBufferSupported() {
 // Some browsers or browser extensions block access to canvas data to prevent fingerprinting.
 // Mapbox GL uses this API to load sprites and images in general.
 function isCanvasGetImageDataSupported() {
-    const canvas = document.createElement('canvas');
+    var canvas = document.createElement('canvas');
     canvas.width = canvas.height = 1;
-    const context = canvas.getContext('2d');
+    var context = canvas.getContext('2d');
     if (!context) {
         return false;
     }
-    const imageData = context.getImageData(0, 0, 1, 1);
+    var imageData = context.getImageData(0, 0, 1, 1);
     return imageData && imageData.width === canvas.width;
 }
 
@@ -158,14 +158,14 @@ function getWebGLContext(failIfMajorPerformanceCaveat) {
 }
 
 function isWebGLSupported(failIfMajorPerformanceCaveat) {
-    const gl = getWebGLContext(failIfMajorPerformanceCaveat);
+    var gl = getWebGLContext(failIfMajorPerformanceCaveat);
     if (!gl) {
         return false;
     }
 
     // Try compiling a shader and get its compile status. Some browsers like Brave block this API
     // to prevent fingerprinting. Unfortunately, this also means that Mapbox GL won't work.
-    let shader;
+    var shader;
     try {
         shader = gl.createShader(gl.VERTEX_SHADER);
     } catch (e) {
