@@ -1,12 +1,7 @@
 'use strict';
 
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = isSupported;
-} else if (window) {
-    window.mapboxgl = window.mapboxgl || {};
-    window.mapboxgl.supported = isSupported;
-    window.mapboxgl.notSupportedReason = notSupportedReason;
-}
+exports.supported = isSupported;
+exports.notSupportedReason = notSupportedReason;
 
 /**
  * Test whether the current browser supports Mapbox GL JS
