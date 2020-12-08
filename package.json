@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "eslint index.js",
-    "build": "mkdir -p dist && uglifyjs index.js -c -m -o dist/mapbox-gl-supported.js"
+    "build": "browserify -s mapboxgl index.js | uglifyjs -c -m -o mapbox-gl-supported.js",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -16,13 +17,13 @@
     "url": "https://github.com/mapbox/mapbox-gl-supported/issues"
   },
   "homepage": "https://github.com/mapbox/mapbox-gl-supported#readme",
+  "files": [
+    "mapbox-gl-supported.js"
+  ],
   "devDependencies": {
-    "browserify": "^16.2.3",
-    "eslint": "^2.8.0",
+    "browserify": "^17.0.0",
+    "eslint": "^7.15.0",
     "eslint-config-mourner": "^2.0.1",
-    "uglify-js": "^2.4.24"
-  },
-  "peerDependencies": {
-    "mapbox-gl": ">=0.32.1 <2.0.0"
+    "uglify-js": "^3.12.1"
   }
 }
