@@ -26,6 +26,7 @@ function notSupportedReason(options) {
     if (!isArrayBufferSupported()) return 'insufficient ArrayBuffer support';
     if (!isCanvasGetImageDataSupported()) return 'insufficient Canvas/getImageData support';
     if (!isWebGLSupportedCached(options && options.failIfMajorPerformanceCaveat)) return 'insufficient WebGL support';
+    if (!isNotIE()) return 'insufficient ECMAScript 6 support';
 }
 
 function isBrowser() {
@@ -167,4 +168,8 @@ function isWebGLSupported(failIfMajorPerformanceCaveat) {
     gl.shaderSource(shader, 'void main() {}');
     gl.compileShader(shader);
     return gl.getShaderParameter(shader, gl.COMPILE_STATUS) === true;
+}
+
+function isNotIE() {
+    return !document.documentMode;
 }
