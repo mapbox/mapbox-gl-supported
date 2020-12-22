@@ -26,5 +26,9 @@ npm install --save @mapbox/mapbox-gl-supported
 ```
 
 ```js
-var isSupported = require('@mapbox/mapbox-gl-supported')();
+var mapboxglSupported = require('@mapbox/mapbox-gl-supported');
+
+if (mapboxglSupported.supported()) {
+    ...
+}
 ```
