@@ -1,15 +1,17 @@
-declare type IsSupputredOptions = {
+declare type IsSuppotredOptions = {
     failIfMajorPerformanceCaveat: boolean;
 }
 
-declare type isSupported = {
+declare type IsSupported = {
     webGLContextAttributes: WebGLContextAttributes;
     (
-        options?: IsSupputredOptions
+        options?: IsSuppotredOptions
     ): boolean;
 };
 
-export = {
-    supported: isSupported,
-    notSupportedReason: (options?: IsSupputredOptions) => string
+declare type SupportedExportedType = {
+    supported: IsSupported;
+    notSupportedReason: (options?: IsSuppotredOptions) => string;
 };
+
+export default SupportedExportedType;
