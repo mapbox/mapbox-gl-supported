@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "A library to determine if a browser supports Mapbox GL JS",
   "main": "index.js",
+  "typings": "./index.d.ts",
   "scripts": {
     "test": "eslint index.js",
     "build": "browserify -s mapboxgl index.js | uglifyjs -c -m -o mapbox-gl-supported.js",
@@ -18,7 +19,8 @@
   },
   "homepage": "https://github.com/mapbox/mapbox-gl-supported#readme",
   "files": [
-    "mapbox-gl-supported.js"
+    "mapbox-gl-supported.js",
+    "index.d.ts"
   ],
   "devDependencies": {
     "browserify": "^17.0.0",
