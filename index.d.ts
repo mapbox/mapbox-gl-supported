@@ -9,9 +9,5 @@ declare type IsSupported = {
     ): boolean;
 };
 
-declare type SupportedExportedType = {
-    supported: IsSupported;
-    notSupportedReason: (options?: IsSuppotredOptions) => string;
-};
-
-export default SupportedExportedType;
+export const supported: IsSupported;
+export function notSupportedReason(options?: IsSuppotredOptions): string;
