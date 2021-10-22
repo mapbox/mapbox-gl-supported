@@ -1,13 +1,13 @@
-declare type IsSuppotredOptions = {
+declare type IsSupportedOptions = {
     failIfMajorPerformanceCaveat: boolean;
 }
 
 declare type IsSupported = {
     webGLContextAttributes: WebGLContextAttributes;
     (
-        options?: IsSuppotredOptions
+        options?: IsSupportedOptions
     ): boolean;
 };
 
 export const supported: IsSupported;
-export function notSupportedReason(options?: IsSuppotredOptions): string;
+export function notSupportedReason(options?: IsSupportedOptions): string;
