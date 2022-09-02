@@ -24,8 +24,8 @@
   ],
   "devDependencies": {
     "browserify": "^17.0.0",
-    "eslint": "^8.1.0",
+    "eslint": "^8.23.0",
     "eslint-config-mourner": "^2.0.1",
-    "uglify-js": "^3.14.2"
+    "uglify-js": "^3.17.0"
   }
 }
