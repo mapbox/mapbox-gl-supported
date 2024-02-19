@@ -17,62 +17,14 @@ function isSupported(options) {
 
 function notSupportedReason(options) {
     if (!isBrowser()) return 'not a browser';
-    if (!isArraySupported()) return 'insufficent Array support';
-    if (!isFunctionSupported()) return 'insufficient Function support';
-    if (!isObjectSupported()) return 'insufficient Object support';
-    if (!isJSONSupported()) return 'insufficient JSON support';
     if (!isWorkerSupported()) return 'insufficient worker support';
-    if (!isUint8ClampedArraySupported()) return 'insufficient Uint8ClampedArray support';
-    if (!isArrayBufferSupported()) return 'insufficient ArrayBuffer support';
     if (!isCanvasGetImageDataSupported()) return 'insufficient Canvas/getImageData support';
-    if (!isWebGLSupportedCached(options && options.failIfMajorPerformanceCaveat)) return 'insufficient WebGL support';
+    if (!isWebGLSupportedCached(options && options.failIfMajorPerformanceCaveat)) return 'insufficient WebGL2 support';
     if (!isNotIE()) return 'insufficient ECMAScript 6 support';
 }
 
 function isBrowser() {
     return typeof window !== 'undefined' && typeof document !== 'undefined';
-}
-
-function isArraySupported() {
-    return (
-        Array.prototype &&
-        Array.prototype.every &&
-        Array.prototype.filter &&
-        Array.prototype.forEach &&
-        Array.prototype.indexOf &&
-        Array.prototype.lastIndexOf &&
-        Array.prototype.map &&
-        Array.prototype.some &&
-        Array.prototype.reduce &&
-        Array.prototype.reduceRight &&
-        Array.isArray
-    );
-}
-
-function isFunctionSupported() {
-    return Function.prototype && Function.prototype.bind;
-}
-
-function isObjectSupported() {
-    return (
-        Object.keys &&
-        Object.create &&
-        Object.getPrototypeOf &&
-        Object.getOwnPropertyNames &&
-        Object.isSealed &&
-        Object.isFrozen &&
-        Object.isExtensible &&
-        Object.getOwnPropertyDescriptor &&
-        Object.defineProperty &&
-        Object.defineProperties &&
-        Object.seal &&
-        Object.freeze &&
-        Object.preventExtensions
-    );
-}
-
-function isJSONSupported() {
-    return 'JSON' in window && 'parse' in JSON && 'stringify' in JSON;
 }
 
 function isWorkerSupported() {
@@ -98,17 +50,6 @@ function isWorkerSupported() {
     URL.revokeObjectURL(workerURL);
 
     return supported;
-}
-
-// IE11 only supports `Uint8ClampedArray` as of version
-// [KB2929437](https://support.microsoft.com/en-us/kb/2929437)
-function isUint8ClampedArraySupported() {
-    return 'Uint8ClampedArray' in window;
-}
-
-// https://github.com/mapbox/mapbox-gl-supported/issues/19
-function isArrayBufferSupported() {
-    return ArrayBuffer.isView;
 }
 
 // Some browsers or browser extensions block access to canvas data to prevent fingerprinting.
@@ -147,10 +88,7 @@ function getWebGLContext(failIfMajorPerformanceCaveat) {
     var attributes = Object.create(isSupported.webGLContextAttributes);
     attributes.failIfMajorPerformanceCaveat = failIfMajorPerformanceCaveat;
 
-    return (
-        canvas.getContext('webgl', attributes) ||
-        canvas.getContext('experimental-webgl', attributes)
-    );
+    return canvas.getContext('webgl2', attributes);
 }
 
 function isWebGLSupported(failIfMajorPerformanceCaveat) {
