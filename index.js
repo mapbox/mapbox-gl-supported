@@ -147,10 +147,7 @@ function getWebGLContext(failIfMajorPerformanceCaveat) {
     var attributes = Object.create(isSupported.webGLContextAttributes);
     attributes.failIfMajorPerformanceCaveat = failIfMajorPerformanceCaveat;
 
-    return (
-        canvas.getContext('webgl', attributes) ||
-        canvas.getContext('experimental-webgl', attributes)
-    );
+    return canvas.getContext('webgl2', attributes);
 }
 
 function isWebGLSupported(failIfMajorPerformanceCaveat) {
