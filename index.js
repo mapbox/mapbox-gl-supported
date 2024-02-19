@@ -18,7 +18,6 @@ function isSupported(options) {
 function notSupportedReason(options) {
     if (!isBrowser()) return 'not a browser';
     if (!isWorkerSupported()) return 'insufficient worker support';
-    if (!isArrayBufferSupported()) return 'insufficient ArrayBuffer support';
     if (!isCanvasGetImageDataSupported()) return 'insufficient Canvas/getImageData support';
     if (!isWebGLSupportedCached(options && options.failIfMajorPerformanceCaveat)) return 'insufficient WebGL2 support';
     if (!isNotIE()) return 'insufficient ECMAScript 6 support';
@@ -51,11 +50,6 @@ function isWorkerSupported() {
     URL.revokeObjectURL(workerURL);
 
     return supported;
-}
-
-// https://github.com/mapbox/mapbox-gl-supported/issues/19
-function isArrayBufferSupported() {
-    return ArrayBuffer.isView;
 }
 
 // Some browsers or browser extensions block access to canvas data to prevent fingerprinting.
