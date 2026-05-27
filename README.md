@@ -11,7 +11,7 @@ You may test your browser [here](http://mapbox.github.io/mapbox-gl-supported).
 ```html
 <script src='mapbox-gl-supported.js'></script>
 <script>
-if (mapboxgl.supported()) {
+if (mapboxgl.isSupported()) {
     ...
 } else {
     ...
@@ -19,16 +19,16 @@ if (mapboxgl.supported()) {
 </script>
 ```
 
-## Using Mapbox GL JS Supported with [Browserify](http://browserify.org/)
+## Using Mapbox GL JS Supported as a module
 
 ```bash
 npm install --save @mapbox/mapbox-gl-supported
 ```
 
 ```js
-var mapboxglSupported = require('@mapbox/mapbox-gl-supported');
+import {isSupported} from '@mapbox/mapbox-gl-supported';
 
-if (mapboxglSupported.supported()) {
+if (isSupported()) {
     ...
 }
 ```

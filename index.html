@@ -28,23 +28,23 @@
     <h1 class='fancy center'>...</h1>
     <h3 id="reason" class='fancy center'></h3>
 
-    <script>var exports = {};</script>
-    <script src='index.js'></script>
-    <script>
-        var bodyElement = document.body;
-        var h1Element = document.getElementsByTagName('h1')[0];
-        var reasonEl = document.getElementById('reason');
+    <script type="module">
+        import {isSupported, notSupportedReason} from './index.js';
 
-        if (exports.supported({failIfMajorPerformanceCaveat: true})) {
+        const bodyElement = document.body;
+        const h1Element = document.getElementsByTagName('h1')[0];
+        const reasonEl = document.getElementById('reason');
+
+        if (isSupported(true)) {
             h1Element.innerHTML = 'supported';
             bodyElement.className = 'fill-green';
-        } else if (exports.supported({failIfMajorPerformanceCaveat: false})) {
+        } else if (isSupported(false)) {
             h1Element.innerHTML = 'supported with a major performance caveat';
-            reasonEl.innerHTML = '(' + exports.notSupportedReason({failIfMajorPerformanceCaveat: false}) + ')';
+            reasonEl.innerHTML = '(' + notSupportedReason(false) + ')';
             bodyElement.className = 'fill-orange';
         } else {
             h1Element.innerHTML = 'not supported';
-            reasonEl.innerHTML = '(' + exports.notSupportedReason({failIfMajorPerformanceCaveat: true}) + ')';
+            reasonEl.innerHTML = '(' + notSupportedReason(true) + ')';
             bodyElement.className = 'fill-red';
         }
     </script>

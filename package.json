@@ -3,11 +3,13 @@
   "version": "3.0.0",
   "description": "A library to determine if a browser supports Mapbox GL JS",
   "main": "index.js",
-  "typings": "./index.d.ts",
+  "type": "module",
+  "exports": "./index.js",
+  "types": "./index.d.ts",
   "scripts": {
-    "test": "eslint index.js",
-    "build": "browserify -s mapboxgl index.js | uglifyjs -c -m -o mapbox-gl-supported.js",
-    "prepublishOnly": "npm run build"
+    "test": "eslint index.js && tsc",
+    "build": "rollup -c",
+    "prepublishOnly": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
@@ -23,9 +25,11 @@
     "index.d.ts"
   ],
   "devDependencies": {
-    "browserify": "^17.0.0",
-    "eslint": "^8.23.0",
-    "eslint-config-mourner": "^2.0.1",
-    "uglify-js": "^3.17.4"
+    "@rollup/plugin-buble": "^1.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
+    "eslint": "^10.4.0",
+    "eslint-config-mourner": "^4.1.0",
+    "rollup": "^4.60.4",
+    "typescript": "^6.0.3"
   }
 }
