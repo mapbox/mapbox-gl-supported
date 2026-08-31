@@ -18,6 +18,7 @@ export function isSupported(failIfMajorPerformanceCaveat) {
 export function notSupportedReason(failIfMajorPerformanceCaveat) {
     if (!isBrowser()) return 'not a browser';
     if (!Object.hasOwn) return 'Object.hasOwn not supported';
+    if (typeof Worker === 'undefined') return 'Web Workers not supported';
     if (!isCanvasGetImageDataSupported()) return 'insufficient Canvas/getImageData support';
     if (!isWebGL2Supported(failIfMajorPerformanceCaveat)) return 'insufficient WebGL2 support';
     return '';
